@@ -1,0 +1,16 @@
+name: reason39
+kind: app
+apiVersion: v0.0
+hostname: reason39.com
+metadata:
+  resource:
+    version: v0.0
+    description: argument graph gui
+  visibility: public
+  concept:
+    number: 39
+spec:
+  documentation:
+    httpGet: reason39.com/docs
+  repository:
+    httpGet: https://github.com/concept41/reason39
