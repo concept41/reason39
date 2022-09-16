@@ -13,9 +13,9 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-        root: ~/
-        paths:
-          - app
+          root: ~/
+          paths:
+            - app
   install_dependencies:
     <<: *defaults
     steps:
