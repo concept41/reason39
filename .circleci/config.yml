@@ -24,7 +24,7 @@ workflows:
           version: "16.17"
           # after the node/test job completes, build the dist packages and save them to a workspace
           post-steps:
-            - run: npm run build
+            - run: yarn run build
             - aws-s3/copy:
                 from: dist/
                 to: s3://sample-app-vue
