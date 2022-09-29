@@ -28,17 +28,28 @@ jobs:
           root: ~/
           paths:
             - app
+  unit_test:
+    <<: *defaults
+    steps:
+      - node/test:
+          version: "16.17"
+  build_and_deploy:
+    - run: yarn run build
+    - aws-s3/copy:
+        from: dist/
+        to: s3://sample-app-vue
+        arguments: --recursive
 workflows:
   test:
     jobs:
-      - node/test:
-          version: "16.17"
-          post-steps:
-            - run: yarn run build
-            - aws-s3/copy:
-                from: dist/
-                to: s3://sample-app-vue
-                arguments: --recursive
+      - install_dependencies
+      - unit_test:
+          requires:
+            - install_dependencies
+      - build_and_deploy:
+          requires:
+            - unit_test
+            
 
 
 # TODO:
