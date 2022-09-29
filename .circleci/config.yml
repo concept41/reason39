@@ -34,11 +34,12 @@ jobs:
       - node/test:
           version: "16.17"
   build_and_deploy:
-    - run: yarn run build
-    - aws-s3/copy:
-        from: dist/
-        to: s3://sample-app-vue
-        arguments: --recursive
+    steps:
+      - run: yarn run build
+      - aws-s3/copy:
+          from: dist/
+          to: s3://sample-app-vue
+          arguments: --recursive
 workflows:
   test:
     jobs:
